@@ -29,6 +29,7 @@ export function Navbar() {
           width={100}
           height={50}
         />
+        <span className="ml-2 mt-3">TOHFA ENTERPRISE</span>
       </h1>
       <div className="flex gap-2 mt-3">
         <Button variant="outline" size="icon">
