@@ -20,8 +20,10 @@ export default function RootLayout({ children }: any) {
         <body className={inter.className}>
           <StoreProvider>
             <ThemeProvider>
-              <Navbar />
-              {children}
+              <div className="flex flex-col h-screen ">
+                <Navbar />
+                <div className="">{children}</div>
+              </div>
             </ThemeProvider>
           </StoreProvider>
         </body>

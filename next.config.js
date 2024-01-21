@@ -8,6 +8,11 @@ const nextConfig = {
         hostname: "img.freepik.com",
         pathname: "**",
       },
+      {
+        protocol: "https",
+        hostname: "media.discordapp.net",
+        pathname: "**",
+      },
     ],
   },
 };

@@ -15,14 +15,22 @@ import {
 import { Button } from "@/components/ui/button";
 import { Card } from "../ui/card";
 import { useAppDispatch } from "@/lib/hooks";
+import Image from "next/image";
 export function Navbar() {
   const dispatch = useAppDispatch();
   const { setTheme } = useTheme();
 
   return (
-    <Card className="flex justify-between border-b-0 p-3 gap-2 fixed w-full">
-      <h1 className="text-2xl flex items-center font-bold">FGY-Y2J</h1>
-      <div className="flex gap-2">
+    <Card className="flex justify-between border-b-0 p-3 gap-2 w-full">
+      <h1 className="text-2xl flex items-center font-bold">
+        <Image
+          src="https://media.discordapp.net/attachments/1195600658729025627/1198523321051004948/admin-ajax.png?ex=65bf36d3&is=65acc1d3&hm=d1882783bb541fbb2418ea58d7cacd30bd99624ea2c8d0af0e229cbdc0bc9af8&=&format=webp&quality=lossless"
+          alt="brand-image"
+          width={100}
+          height={50}
+        />
+      </h1>
+      <div className="flex gap-2 mt-3">
         <Button variant="outline" size="icon">
           <BellIcon className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all  dark:scale-100" />
         </Button>
