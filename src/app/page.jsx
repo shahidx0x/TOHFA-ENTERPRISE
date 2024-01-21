@@ -1,9 +1,10 @@
 "use client";
 import React from "react";
+import { TohfaCarousel } from "../components/TohfaCarousel";
 const page = () => {
   return (
-    <div className="bg-red-200 border-2 mt-[100rem ]">
-      <h2 className="text-5xl border-2">Home page</h2>
+    <div className="flex justify-center">
+      <TohfaCarousel />
     </div>
   );
 };
