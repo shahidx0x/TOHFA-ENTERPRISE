@@ -5,6 +5,7 @@ import "./globals.css";
 import { Navbar } from "@/components/shared/Navbar";
 import StoreProvider from "./providers/StoreProvider";
 import { ThemeProvider } from "./providers/ThemeProvider";
+import NavbarT from "@/components/shared/NavbarT";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,7 +22,7 @@ export default function RootLayout({ children }: any) {
           <StoreProvider>
             <ThemeProvider>
               <div className="flex flex-col h-screen ">
-                <Navbar />
+                <NavbarT />
                 <div className="">{children}</div>
               </div>
             </ThemeProvider>
