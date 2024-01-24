@@ -128,7 +128,7 @@ export default function NavbarT() {
               <ul className="hidden w-8/12 md:flex items-center justify-center space-x-8">
                 <li>
                   <a
-                    href="javascript:void(0)"
+                    href=""
                     className="dark:text-white text-base text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-800 hover:underline"
                   >
                     Home
@@ -136,7 +136,7 @@ export default function NavbarT() {
                 </li>
                 <li>
                   <a
-                    href="javascript:void(0)"
+                    href=""
                     className="dark:text-white text-base text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-800 hover:underline"
                   >
                     Products
@@ -144,7 +144,7 @@ export default function NavbarT() {
                 </li>
                 <li>
                   <a
-                    href="javascript:void(0)"
+                    href=""
                     className="dark:text-white text-base text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-800 hover:underline"
                   >
                     About
@@ -152,7 +152,7 @@ export default function NavbarT() {
                 </li>
                 <li>
                   <a
-                    href="javascript:void(0)"
+                    href=""
                     className="dark:text-white text-base text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-800 hover:underline"
                   >
                     Contact
@@ -406,7 +406,7 @@ export default function NavbarT() {
               <ul className="flex flex-col space-y-6">
                 <li>
                   <a
-                    href="javascript:void(0)"
+                    href=""
                     className="dark:text-white flex items-center justify-between hover:underline text-base text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-800"
                   >
                     Home
@@ -432,7 +432,7 @@ export default function NavbarT() {
                 </li>
                 <li>
                   <a
-                    href="javascript:void(0)"
+                    href=""
                     className="dark:text-white flex items-center justify-between hover:underline text-base text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-800"
                   >
                     Furniture
@@ -458,7 +458,7 @@ export default function NavbarT() {
                 </li>
                 <li>
                   <a
-                    href="javascript:void(0)"
+                    href=""
                     className="dark:text-white flex items-center justify-between hover:underline text-base text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-800"
                   >
                     Lookbook
@@ -484,7 +484,7 @@ export default function NavbarT() {
                 </li>
                 <li>
                   <a
-                    href="javascript:void(0)"
+                    href=""
                     className="dark:text-white flex items-center justify-between hover:underline text-base text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-800"
                   >
                     Support
@@ -514,7 +514,7 @@ export default function NavbarT() {
               <ul className="flex flex-col space-y-8 bg-gray-50 w-full py-10 p-4 dark:bg-gray-800">
                 <li>
                   <a
-                    href="javascript:void(0)"
+                    href=""
                     className="dark:text-white text-gray-800 flex items-center space-x-2 focus:outline-none focus:ring-2 focus:ring-gray-800 hover:underline"
                   >
                     <div>
@@ -554,7 +554,7 @@ export default function NavbarT() {
                 </li>
                 <li>
                   <a
-                    href="javascript:void(0)"
+                    href=""
                     className="dark:text-white text-gray-800 flex items-center space-x-2 focus:outline-none focus:ring-2 focus:ring-gray-800 hover:underline"
                   >
                     <div>

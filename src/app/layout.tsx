@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-
-import { Navbar } from "@/components/shared/Navbar";
+import { Toaster } from "@/components/ui/toaster";
 import StoreProvider from "./providers/StoreProvider";
 import { ThemeProvider } from "./providers/ThemeProvider";
 import NavbarT from "@/components/shared/NavbarT";
@@ -10,8 +9,8 @@ import NavbarT from "@/components/shared/NavbarT";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "FGY-Y2J",
-  description: "FGY-Y2J NEXT-14SHADCN",
+  title: "TOHFA ENTERPRISE",
+  description: "TOHFA ENTERPRISE",
 };
 
 export default function RootLayout({ children }: any) {
@@ -23,7 +22,10 @@ export default function RootLayout({ children }: any) {
             <ThemeProvider>
               <div className="flex flex-col h-screen ">
                 <NavbarT />
-                <div className="">{children}</div>
+                <div className="">
+                  <Toaster />
+                  {children}
+                </div>
               </div>
             </ThemeProvider>
           </StoreProvider>

@@ -3,6 +3,7 @@ import Image from "next/image";
 import React from "react";
 import bannerImageOne from "../../assets/products/Ameera Ghee Toast.png";
 import { Card } from "./ui/card";
+import ProductCard from "./productCard/ProductCard";
 
 const Productgrid = () => {
   return (
@@ -57,25 +58,11 @@ const Productgrid = () => {
         </div>
 
         <div className=" grid lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 lg:gap-y-12 lg:gap-x-8 sm:gap-y-10 sm:gap-x-6 gap-y-6 lg:mt-12 mt-10">
-          <div className="max-w-xs rounded-md shadow-md bg-gray-50 text-gray-800">
-            <Image
-              src={bannerImageOne}
-              alt=""
-              className="object-cover object-center w-full rounded-t-md h-56 bg-gray-500"
-            />
-            <div className="flex flex-col justify-between p-6 space-y-8">
-              <div className="space-y-2">
-                <p className="bg-gray-600 font-bold text-white rounded-full w-28 flex justify-center">
-                  Toast
-                </p>
-                <h2 className="text-2xl font-semibold tracki">GHEE TOAST</h2>
-                <p className="text-gray-800 font-mono font-bold">2000 PCS</p>
-              </div>
-              <button className=" hover:bg-gray-700 focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 bg-gray-800 py-4 rounded-md md:px-16 md:w-auto w-full lg:mt-28 md:mt-12 mt-10 text-white font-medium text-base leading-4">
-                Add to Cart
-              </button>
-            </div>
-          </div>
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
         </div>
 
         <div className=" flex justify-center items-center">
