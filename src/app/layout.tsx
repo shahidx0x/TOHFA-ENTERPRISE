@@ -5,12 +5,13 @@ import { Toaster } from "@/components/ui/toaster";
 import StoreProvider from "./providers/StoreProvider";
 import { ThemeProvider } from "./providers/ThemeProvider";
 import NavbarT from "@/components/shared/NavbarT";
+import Footer from "@/components/shared/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "TOHFA ENTERPRISE",
-  description: "TOHFA ENTERPRISE",
+  description: "",
 };
 
 export default function RootLayout({ children }: any) {
@@ -20,13 +21,10 @@ export default function RootLayout({ children }: any) {
         <body className={inter.className}>
           <StoreProvider>
             <ThemeProvider>
-              <div className="flex flex-col h-screen ">
-                <NavbarT />
-                <div className="">
-                  <Toaster />
-                  {children}
-                </div>
-              </div>
+              <NavbarT />
+              {children}
+              <Toaster />
+              <Footer />
             </ThemeProvider>
           </StoreProvider>
         </body>

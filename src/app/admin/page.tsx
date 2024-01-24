@@ -4,31 +4,18 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import {
-
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form"
+} from "@/components/ui/form";
 import Image from "next/image";
-import { getApiUrl } from "@/helpers/getApiUrl";
 import { useToast } from "@/components/ui/use-toast";
-import { ToastAction } from "@/components/ui/toast";
 const formSchema = z.object({
   email: z.string().email(),
   password: z.string().min(3, {
@@ -45,15 +32,9 @@ export default function LoginPage() {
 
   const onSubmit = async (values: any) => {
     console.log(values);
-    toast({
-      variant: "destructive",
-      title: "Uh oh! Something went wrong.",
-      description: "There was a problem with your request.",
-      action: <ToastAction altText="Try again">Try again</ToastAction>,
-    });
   };
   return (
-    <div className="flex flex-col lg:flex-row justify-center items-center h-screen">
+    <div className="flex lg:flex-row justify-center items-center h-screen -mt-28 ">
       <Card className="flex">
         <Card className="w-96 p-5 rounded-r-none">
           <CardHeader>

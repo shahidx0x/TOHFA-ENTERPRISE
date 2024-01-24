@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import React, { useState } from "react";
+import Link from "next/link";
 
 export default function NavbarT() {
   const [searchInput, setSearchInput] = useState(true);
@@ -20,31 +21,6 @@ export default function NavbarT() {
             } bg-white dark:bg-gray-900 lg:hidden py-5 px-6 items-center justify-between`}
           >
             <div className="flex items-center space-x-3 text-gray-800 dark:text-white">
-              {/* <div>
-                <svg
-                  className="fill-stroke"
-                  width={20}
-                  height={20}
-                  viewBox="0 0 20 20"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M9 17C13.4183 17 17 13.4183 17 9C17 4.58172 13.4183 1 9 1C4.58172 1 1 4.58172 1 9C1 13.4183 4.58172 17 9 17Z"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M18.9984 18.9999L14.6484 14.6499"
-                    stroke="currentColor"
-                    strokeWidth="1.25"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </div> */}
               <input
                 type="text"
                 placeholder="Search for products"
@@ -127,12 +103,12 @@ export default function NavbarT() {
               </h1>
               <ul className="hidden w-8/12 md:flex items-center justify-center space-x-8">
                 <li>
-                  <a
-                    href=""
+                  <Link
+                    href="/"
                     className="dark:text-white text-base text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-800 hover:underline"
                   >
                     Home
-                  </a>
+                  </Link>
                 </li>
                 <li>
                   <a
