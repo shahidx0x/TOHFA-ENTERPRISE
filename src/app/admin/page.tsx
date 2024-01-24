@@ -16,6 +16,9 @@ import {
 } from "@/components/ui/form";
 import Image from "next/image";
 import { useToast } from "@/components/ui/use-toast";
+import { useUserLoginMutation } from "@/lib/features/api/authApi";
+import { ToastAction } from "@/components/ui/toast";
+import { useRouter } from "next/navigation";
 const formSchema = z.object({
   email: z.string().email(),
   password: z.string().min(3, {
@@ -25,13 +28,30 @@ const formSchema = z.object({
 
 export default function LoginPage() {
   const { toast } = useToast();
+  const router = useRouter();
+  const [userLogin] = useUserLoginMutation();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
   });
 
   const onSubmit = async (values: any) => {
-    console.log(values);
+    const result = await userLogin({ ...values });
+    if (result && "data" in result && result.data.statusCode === 200) {
+      toast({
+        variant: "default",
+        title: "Login successful!",
+        description: "Admin Logged in successfully.",
+      });
+      router.push("/admin/dashbord");
+    } else if (result && "error" in result) {
+      toast({
+        variant: "destructive",
+        title: "Admin Login failed!",
+        description: "There was a problem with your request.",
+      });
+    }
+    console.log(result);
   };
   return (
     <div className="flex lg:flex-row justify-center items-center h-screen -mt-28 ">
