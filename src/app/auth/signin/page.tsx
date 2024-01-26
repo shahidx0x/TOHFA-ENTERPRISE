@@ -20,7 +20,7 @@ import { useToast } from "@/components/ui/use-toast";
 import { useUserLoginMutation } from "@/lib/features/api/authApi";
 import { ToastAction } from "@/components/ui/toast";
 import { useRouter } from "next/navigation";
-import { useAppDispatch } from "@/lib/hooks";
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { decodeJWT } from "@/helpers/decodeJWT";
 import { setUser } from "@/lib/features/users/userSlice";
 import Link from "next/link";
@@ -36,6 +36,7 @@ export default function LoginPage() {
   const router = useRouter();
   const dispatch = useAppDispatch();
   const [userLogin] = useUserLoginMutation();
+  const user = useAppSelector((state) => state.loggedUser);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -46,8 +47,8 @@ export default function LoginPage() {
     if (result && "data" in result && result.data.statusCode === 200) {
       toast({
         variant: "default",
-        title: "Login successful!",
-        description: "Admin Logged in successfully.",
+        title: "Success!",
+        description: "User Logged in successfully.",
       });
       const user = decodeJWT(result.data.data.accessToken);
       const toDispatch = {
@@ -56,11 +57,15 @@ export default function LoginPage() {
         role: user.role,
       };
       dispatch(setUser(toDispatch));
-      router.push("/admin/dashbord/status");
+      if (user.role === "admin") {
+        router.push("/admin/dashbord/status");
+      } else {
+        router.push("/");
+      }
     } else if (result && "error" in result) {
       toast({
         variant: "destructive",
-        title: "Admin Login failed!",
+        title: "Failed!",
         description: "There was a problem with your request.",
       });
     }

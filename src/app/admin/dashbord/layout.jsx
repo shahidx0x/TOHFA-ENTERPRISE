@@ -5,7 +5,8 @@ import { Card } from "@/components/ui/card";
 import { ArrowBigRight } from "lucide-react";
 import { useState } from "react";
 import DashbordNavbar from "../../../components/shared/DashbordNavbar";
-export default function DashbordLayout({ children }) {
+import { withAuth } from "@/app/auth/withAuth";
+function DashbordLayout({ children }) {
   const [show, setShow] = useState(true);
   return (
     <div>
@@ -67,3 +68,4 @@ export default function DashbordLayout({ children }) {
     </div>
   );
 }
+export default withAuth(DashbordLayout);

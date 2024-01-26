@@ -69,7 +69,7 @@ export default function SignUpPage() {
         role: user.role,
       };
       dispatch(setUser(toDispatch));
-      router.push("/admin/dashbord/status");
+      router.push("/");
     } else if (result && "error" in result) {
       setError(result);
       toast({
@@ -80,7 +80,7 @@ export default function SignUpPage() {
     }
   };
   return (
-    <div className="flex lg:flex-row justify-center items-center h-screen -mt-28 ">
+    <div className="flex lg:flex-row justify-center items-center h-screen -mt-10 ">
       <Card className="flex">
         <Card className="w-96 p-5 rounded-r-none">
           <CardHeader>
@@ -200,7 +200,7 @@ export default function SignUpPage() {
           </CardContent>
         </Card>
         <Image
-          className="rounded-r-md shadow-lg border-1"
+          className="hidden  lg:flex rounded-r-md shadow-lg border-1"
           src="https://img.freepik.com/free-vector/color-doodle-food-burger-pattern_1409-3918.jpg?w=1380&t=st=1703802411~exp=1703803011~hmac=57199d01dd3719bc3fdab7709f360e8fa27dabb71c2315b337d9e0bbc9f0b8f3"
           alt="food-img"
           width={900}
