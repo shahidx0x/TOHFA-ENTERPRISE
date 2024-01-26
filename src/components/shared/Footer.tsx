@@ -1,9 +1,19 @@
+"use client";
+
+import { useAppSelector } from "@/lib/hooks";
 import Image from "next/image";
 import React from "react";
 
 const Footer = () => {
+  const user = useAppSelector((state) => state.loggedUser);
   return (
-    <div className="mx-auto container xl:px-20 lg:px-12 sm:px-6 px-4  py-12">
+    <div
+      className={
+        user.role === "admin"
+          ? "hidden"
+          : "mx-auto container xl:px-20 lg:px-12 sm:px-6 px-4  py-12"
+      }
+    >
       <div className="flex flex-col items-center justify-center">
         <div>
           <Image

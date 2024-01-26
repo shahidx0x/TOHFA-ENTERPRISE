@@ -1,14 +1,15 @@
-"use client"
+"use client";
 import * as React from "react";
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import * as z from "zod"
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import * as z from "zod";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import {
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -19,6 +20,10 @@ import { useToast } from "@/components/ui/use-toast";
 import { useUserLoginMutation } from "@/lib/features/api/authApi";
 import { ToastAction } from "@/components/ui/toast";
 import { useRouter } from "next/navigation";
+import { useAppDispatch } from "@/lib/hooks";
+import { decodeJWT } from "@/helpers/decodeJWT";
+import { setUser } from "@/lib/features/users/userSlice";
+import Link from "next/link";
 const formSchema = z.object({
   email: z.string().email(),
   password: z.string().min(3, {
@@ -29,6 +34,7 @@ const formSchema = z.object({
 export default function LoginPage() {
   const { toast } = useToast();
   const router = useRouter();
+  const dispatch = useAppDispatch();
   const [userLogin] = useUserLoginMutation();
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -43,7 +49,14 @@ export default function LoginPage() {
         title: "Login successful!",
         description: "Admin Logged in successfully.",
       });
-      router.push("/admin/dashbord");
+      const user = decodeJWT(result.data.data.accessToken);
+      const toDispatch = {
+        id: user.userId,
+        email: user.email,
+        role: user.role,
+      };
+      dispatch(setUser(toDispatch));
+      router.push("/admin/dashbord/status");
     } else if (result && "error" in result) {
       toast({
         variant: "destructive",
@@ -51,14 +64,13 @@ export default function LoginPage() {
         description: "There was a problem with your request.",
       });
     }
-    console.log(result);
   };
   return (
     <div className="flex lg:flex-row justify-center items-center h-screen -mt-28 ">
       <Card className="flex">
         <Card className="w-96 p-5 rounded-r-none">
           <CardHeader>
-            <CardTitle>Admin Panel</CardTitle>
+            <CardTitle>Please Login</CardTitle>
           </CardHeader>
           <CardContent>
             <Form {...form}>
@@ -80,6 +92,7 @@ export default function LoginPage() {
                     </FormItem>
                   )}
                 />
+
                 <FormField
                   control={form.control}
                   name="password"
@@ -102,6 +115,12 @@ export default function LoginPage() {
                   Login
                 </Button>
               </form>
+              <FormDescription className="mt-10">
+                Unregistered User ?{" "}
+                <Link href="/auth/signup">
+                  <span className="text-blue-600 underline">Signup here</span>
+                </Link>
+              </FormDescription>
             </Form>
           </CardContent>
         </Card>

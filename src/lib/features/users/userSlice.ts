@@ -1,19 +1,26 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 interface userState {
-  name: string | null;
   id: String | null;
   email: String | null;
+  role: string | null;
 }
 
-const initialState: userState = { name: null, id: null, email: null };
+export const initialStateUser: userState = {
+  role: null,
+  id: null,
+  email: null,
+};
 
 const userSlice = createSlice({
-  name: "user",
-  initialState,
+  name: "loggedInUser",
+  initialState: initialStateUser,
   reducers: {
     setUser: (state, action) => {
-      state.name = action.payload.name;
+      console.log("payload :", action.payload);
+      state.role = action.payload.role;
+      console.log("after set :", state.role);
+
       state.id = action.payload.id;
       state.email = action.payload.email;
     },
