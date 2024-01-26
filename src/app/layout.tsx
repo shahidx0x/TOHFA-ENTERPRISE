@@ -6,6 +6,8 @@ import StoreProvider from "./providers/StoreProvider";
 import { ThemeProvider } from "./providers/ThemeProvider";
 import NavbarT from "@/components/shared/NavbarT";
 import Footer from "@/components/shared/Footer";
+import "rsuite/dist/rsuite-no-reset.min.css";
+import { CustomProvider } from "rsuite";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,12 +22,14 @@ export default function RootLayout({ children }: any) {
       <html lang="en" suppressHydrationWarning>
         <body className={inter.className}>
           <StoreProvider>
-            <ThemeProvider>
-              <NavbarT />
-              {children}
-              <Toaster />
-              <Footer />
-            </ThemeProvider>
+            <CustomProvider>
+              <ThemeProvider>
+                <NavbarT />
+                {children}
+                <Toaster />
+                <Footer />
+              </ThemeProvider>
+            </CustomProvider>
           </StoreProvider>
         </body>
       </html>

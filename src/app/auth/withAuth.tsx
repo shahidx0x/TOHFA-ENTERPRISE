@@ -2,14 +2,14 @@
 
 import { useAppSelector } from "@/lib/hooks";
 import { redirect } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useLayoutEffect } from "react";
 
 export const withAuth = (Component: React.FC) => {
   return function WithAuth(props: any) {
     const state = useAppSelector((state) => state.loggedUser);
     console.log(state.email);
 
-    useEffect(() => {
+    useLayoutEffect(() => {
       if (!state.email) {
         redirect("/auth/signin");
       }

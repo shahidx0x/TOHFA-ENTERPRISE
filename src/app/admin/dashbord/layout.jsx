@@ -8,7 +8,7 @@ import DashbordNavbar from "../../../components/shared/DashbordNavbar";
 export default function DashbordLayout({ children }) {
   const [show, setShow] = useState(true);
   return (
-    <>
+    <div>
       <DashbordNavbar />
       <div className="flex  h-screen">
         <Button
@@ -18,11 +18,15 @@ export default function DashbordLayout({ children }) {
           <ArrowBigRight />
         </Button>
         <div
-          className={show ? `w-96 h-screen overflow-hidden border` : `hidden`}
+          className={
+            show
+              ? `hidden lg:flex flex-col w-96 h-screen overflow-hidden border`
+              : `hidden`
+          }
         >
           <div
             style={{ backgroundColor: "black" }}
-            className="flex items-center justify-between p-3 rounded-md text-white"
+            className="hidden lg:flex items-center justify-between p-3 rounded-md text-white"
           >
             <h2 className="font-bold">Admin Dashboard</h2>
             <button onClick={() => setShow((state) => !state)} className="p-2">
@@ -58,8 +62,8 @@ export default function DashbordLayout({ children }) {
           <SideNavbar />
         </div>
 
-        <div className=" w-full h-screen p-5 border">{children}</div>
+        <div className=" w-full h-screen p-5 ">{children}</div>
       </div>
-    </>
+    </div>
   );
 }

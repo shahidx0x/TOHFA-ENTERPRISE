@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import Link from "next/link";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import {
@@ -42,6 +42,11 @@ export default function NavbarT() {
     dispatch(setUser(initialStateUser));
     setIsLogout(false);
   };
+  useLayoutEffect(() => {
+    if (user.role === "admin") {
+      return undefined;
+    }
+  }, []);
 
   return (
     <div className={user.role === "admin" ? "hidden" : " dark:bg-gray-900"}>
