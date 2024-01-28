@@ -9,6 +9,7 @@ export const usersApi = baseApi.injectEndpoints({
           method: "GET",
         };
       },
+      providesTags: ["user"],
     }),
   }),
 });

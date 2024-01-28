@@ -16,7 +16,11 @@ export const withAuth = (Component: React.FC) => {
     }, [isLogged, router]);
 
     if (!isLogged) {
-      return null;
+      return (
+        <div className="w-screen h-screen flex justify-center item-center">
+          <p className="text-black  font-bold text-7xl">TOHFA ENTERPRISE</p>
+        </div>
+      );
     }
 
     return <Component {...props} />;

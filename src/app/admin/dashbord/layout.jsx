@@ -5,11 +5,13 @@ import { ArrowBigRight } from "lucide-react";
 import { useState } from "react";
 import DashbordNavbar from "../../../components/shared/DashbordNavbar";
 import { withAuth } from "@/app/auth/withAuth";
+import NextTopLoader from "nextjs-toploader";
 
 function DashbordLayout({ children }) {
   const [show, setShow] = useState(true);
   return (
     <div>
+      <NextTopLoader color="#000000" />
       <DashbordNavbar />
       <div className="flex  h-screen">
         <Button

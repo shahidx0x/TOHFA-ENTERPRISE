@@ -44,31 +44,39 @@ export default function LoginPage() {
   });
 
   const onSubmit = async (values: any) => {
-    const result = await userLogin({ ...values });
-    if (result && "data" in result && result.data.statusCode === 200) {
-      toast({
-        variant: "default",
-        title: "Success!",
-        description: "User Logged in successfully.",
-      });
-      storeUserInfo({ accessToken: result.data.data.accessToken });
-      const user = getUserInfo();
-      const toDispatch = {
-        id: user?.userId,
-        email: user?.email,
-        role: user?.role,
-      };
-      dispatch(setUser(toDispatch));
-      user?.role === "admin"
-        ? router.push("/admin/dashbord/status")
-        : router.push("/");
-    } else if (result && "error" in result) {
-      toast({
-        variant: "destructive",
-        title: "Failed!",
-        description: "There was a problem with your request.",
-      });
+   
+    try {
+      const result = await userLogin({ ...values });
+      if (result && "data" in result) {
+        toast({
+          variant: "default",
+          title: "Success!",
+          description: "User Logged in successfully.",
+        });
+        storeUserInfo({ accessToken: result?.data?.accessToken });
+        const user = getUserInfo();
+        const toDispatch = {
+          id: user?.userId,
+          email: user?.email,
+          role: user?.role,
+        };
+        dispatch(setUser(toDispatch));
+        user?.role === "admin"
+          ? router.push("/admin/dashbord/status")
+          : router.push("/");
+      } else if (result && "error" in result) {
+        toast({
+          variant: "destructive",
+          title: "Failed!",
+          //@ts-ignore
+          description: `${result?.error?.message as string}`,
+        });
+      }
+    } catch (error) {
+      console.log("Login Error", error);
     }
+
+ 
   };
   return (
     <div className="flex lg:flex-row justify-center items-center h-screen -mt-28 ">

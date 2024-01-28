@@ -55,6 +55,7 @@ export function ProductDataTable() {
     React.useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = React.useState({});
   const products_list = useProductListQuery({});
+  console.log(products_list);
 
   const data = products_list?.data?.data?.result || [];
 
@@ -177,7 +178,8 @@ export function ProductDataTable() {
 
   return (
     <div className="w-full">
-      <div className="flex items-center py-4">
+      <div>working</div>
+      {/* <div className="flex items-center py-4">
         <Input
           placeholder="Filter emails..."
           value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
@@ -291,7 +293,7 @@ export function ProductDataTable() {
             Next
           </Button>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
