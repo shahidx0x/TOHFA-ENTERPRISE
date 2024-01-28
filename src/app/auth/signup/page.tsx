@@ -53,7 +53,6 @@ export default function SignUpPage() {
   });
 
   const onSubmit = async (values: any) => {
-    console.log(values);
     const { confirmPassword, ...rest } = values;
     const result = await userSignup({ ...rest });
     if (result && "data" in result && result.data.statusCode === 201) {
@@ -69,7 +68,6 @@ export default function SignUpPage() {
         role: user.role,
       };
       dispatch(setUser(toDispatch));
-      router.push("/");
     } else if (result && "error" in result) {
       setError(result);
       toast({

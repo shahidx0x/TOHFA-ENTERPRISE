@@ -19,11 +19,12 @@ import Image from "next/image";
 import { useToast } from "@/components/ui/use-toast";
 import { useUserLoginMutation } from "@/lib/features/api/authApi";
 import { ToastAction } from "@/components/ui/toast";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { decodeJWT } from "@/helpers/decodeJWT";
 import { setUser } from "@/lib/features/users/userSlice";
 import Link from "next/link";
+import { getUserInfo, storeUserInfo } from "@/service/auth.service";
 const formSchema = z.object({
   email: z.string().email(),
   password: z.string().min(3, {
@@ -50,18 +51,17 @@ export default function LoginPage() {
         title: "Success!",
         description: "User Logged in successfully.",
       });
-      const user = decodeJWT(result.data.data.accessToken);
+      storeUserInfo({ accessToken: result.data.data.accessToken });
+      const user = getUserInfo();
       const toDispatch = {
-        id: user.userId,
-        email: user.email,
-        role: user.role,
+        id: user?.userId,
+        email: user?.email,
+        role: user?.role,
       };
       dispatch(setUser(toDispatch));
-      if (user.role === "admin") {
-        router.push("/admin/dashbord/status");
-      } else {
-        router.push("/");
-      }
+      user?.role === "admin"
+        ? router.push("/admin/dashbord/status")
+        : router.push("/");
     } else if (result && "error" in result) {
       toast({
         variant: "destructive",

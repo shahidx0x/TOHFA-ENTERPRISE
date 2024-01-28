@@ -47,7 +47,7 @@ export default function NavbarT() {
       return undefined;
     }
   }, [user.role]);
-  console.log(user);
+
   return (
     <div className={user.role === "admin" ? "hidden" : " dark:bg-gray-900"}>
       <div>

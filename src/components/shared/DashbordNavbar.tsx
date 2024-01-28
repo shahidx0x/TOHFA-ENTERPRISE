@@ -52,21 +52,22 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { Separator } from "../ui/separator";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { removeLocalStorage } from "@/utils/localStorage";
+import { removeUserInfo } from "@/service/auth.service";
 const DashbordNavbar = () => {
-  const [searchInput, setSearchInput] = useState(true);
-  const [mdOptionsToggle, setMdOptionsToggle] = useState(true);
-  const [showMenu, setShowMenu] = useState(false);
   const [isLogout, setIsLogout] = useState(false);
   const dispatch = useAppDispatch();
   const [menu, setMenu] = useState(false);
-  const [show, setShow] = useState(true);
   const currentRoute = usePathname();
+  const router = useRouter();
 
   const user = useAppSelector((state) => state.loggedUser);
   const handleLogout = () => {
+    removeUserInfo();
     dispatch(setUser(initialStateUser));
     setIsLogout(false);
+    router.push("/");
   };
   return (
     <>

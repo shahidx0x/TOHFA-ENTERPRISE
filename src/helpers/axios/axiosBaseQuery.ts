@@ -26,7 +26,10 @@ export const axiosBaseQuery =
         method,
         data,
         params,
-        headers,
+        headers: {
+          ...headers,
+          "Cache-Control": "no-cache",
+        },
       });
       return { data: result.data };
     } catch (axiosError) {

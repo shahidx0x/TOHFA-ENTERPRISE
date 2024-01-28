@@ -104,6 +104,22 @@ export default function SideNavbar() {
                     <p className={`font-bold text-sm`}>Product list</p>
                   </Link>
                 </li>
+                <li
+                  className={
+                    currentRoute === "/admin/dashbord/products/product-add-type"
+                      ? `rounded-md  bg-gray-500 text-gray-200`
+                      : `rounded-md  hover:bg-gray-100 text-black`
+                  }
+                >
+                  <Link
+                    rel="noopener noreferrer"
+                    href="/admin/dashbord/products/product-add-type"
+                    className="flex items-center p-2 space-x-3 rounded-md"
+                  >
+                    <PlusCircle size={20} />
+                    <p className={`font-bold text-sm`}>Add Product Type</p>
+                  </Link>
+                </li>
 
                 <li
                   className={

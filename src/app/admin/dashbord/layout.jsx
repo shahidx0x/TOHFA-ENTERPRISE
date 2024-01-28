@@ -1,11 +1,11 @@
 "use client";
 import SideNavbar from "@/components/shared/SideNavbar";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
 import { ArrowBigRight } from "lucide-react";
 import { useState } from "react";
 import DashbordNavbar from "../../../components/shared/DashbordNavbar";
 import { withAuth } from "@/app/auth/withAuth";
+
 function DashbordLayout({ children }) {
   const [show, setShow] = useState(true);
   return (

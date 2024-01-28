@@ -1,6 +1,7 @@
 "use client";
 import MyDashbordHeader from "@/components/shared/MyDashbordHeader";
 import React from "react";
+import { ProductDataTable } from "./ProductDataTable";
 
 const page = () => {
   return (
@@ -22,6 +23,7 @@ const page = () => {
           },
         ]}
       />
+      <ProductDataTable />
     </div>
   );
 };

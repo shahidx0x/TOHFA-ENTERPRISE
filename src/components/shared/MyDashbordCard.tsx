@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 const MyDashbordCard = ({ title, count, description }: any) => {
   return (
     <div>
-      <Card className="w-full lg:w-[23rem] h-[48] ">
+      <Card key={title} className="w-full lg:w-[23rem] h-[48] ">
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
           <CardTitle className="text-sm font-medium">{title}</CardTitle>
           <svg

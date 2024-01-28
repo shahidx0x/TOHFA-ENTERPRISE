@@ -41,11 +41,12 @@ import {
 } from "@/components/ui/table";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Card } from "@/components/ui/card";
-import { UserList } from "./tableTypes";
-import { useUserListQuery } from "@/lib/features/api/usersApi";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
-export function UserDataTable() {
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { ProductList } from "./productTypes";
+import { useProductListQuery } from "@/lib/features/api/productsApi";
+
+export function ProductDataTable() {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
@@ -53,9 +54,11 @@ export function UserDataTable() {
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = React.useState({});
-  const user_list = useUserListQuery({});
-  const data = user_list?.currentData?.data?.result || [];
-  const columns: ColumnDef<UserList>[] = [
+  const products_list = useProductListQuery({});
+
+  const data = products_list?.data?.data?.result || [];
+
+  const columns: ColumnDef<ProductList>[] = [
     {
       id: "select",
       header: ({ table }) => (
@@ -98,64 +101,30 @@ export function UserDataTable() {
       ),
     },
     {
-      accessorKey: "email",
+      accessorKey: "typeId",
       header: ({ column }) => {
-        return (
-          <Button
-            variant="ghost"
-            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-          >
-            Email
-            <CaretSortIcon className="ml-2 h-4 w-4" />
-          </Button>
-        );
+        return <Button variant="ghost">Product Type</Button>;
       },
-      cell: ({ row }) => (
-        <div className="lowercase">{row.getValue("email")}</div>
-      ),
-    },
-    {
-      accessorKey: "address",
-      header: ({ column }) => {
-        return (
-          <Button
-            variant="ghost"
-            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-          >
-            Address
-            <CaretSortIcon className="ml-2 h-4 w-4" />
-          </Button>
-        );
-      },
-      cell: ({ row }) => (
-        <div className="lowercase">{row.getValue("address")}</div>
-      ),
-    },
-    {
-      accessorKey: "phoneNumber",
-      header: ({ column }) => {
-        return (
-          <Button
-            variant="ghost"
-            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-          >
-            Contact
-          </Button>
-        );
-      },
-      cell: ({ row }) => (
-        <div className="lowercase">{row.getValue("phoneNumber")}</div>
-      ),
-    },
-
-    {
-      accessorKey: "role",
-      header: () => <div className="text-right">Role</div>,
       cell: ({ row }) => {
+        return <div className="lowercase px-10">{row.getValue("typeId")}</div>;
+      },
+    },
+    {
+      accessorKey: "description",
+      header: ({ column }) => {
         return (
-          <div className="text-right font-medium">{row.getValue("role")}</div>
+          <Button
+            variant="ghost"
+            className=""
+            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+          >
+            Description
+          </Button>
         );
       },
+      cell: ({ row }) => (
+        <div className="lowercase  px-4">{row.getValue("description")}</div>
+      ),
     },
     {
       id: "actions",
@@ -173,8 +142,14 @@ export function UserDataTable() {
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
               <DropdownMenuLabel>Actions</DropdownMenuLabel>
-              <DropdownMenuItem>Disable user</DropdownMenuItem>
+              <DropdownMenuItem
+                onClick={() => navigator.clipboard.writeText(payment.id)}
+              >
+                Copy payment ID
+              </DropdownMenuItem>
               <DropdownMenuSeparator />
+              <DropdownMenuItem>View customer</DropdownMenuItem>
+              <DropdownMenuItem>View payment details</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         );
@@ -205,9 +180,9 @@ export function UserDataTable() {
       <div className="flex items-center py-4">
         <Input
           placeholder="Filter emails..."
-          value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
+          value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
-            table.getColumn("email")?.setFilterValue(event.target.value)
+            table.getColumn("name")?.setFilterValue(event.target.value)
           }
           className="max-w-sm"
         />

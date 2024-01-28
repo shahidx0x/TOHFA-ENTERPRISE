@@ -1,20 +1,24 @@
 "use client";
-
-import { useAppSelector } from "@/lib/hooks";
-import { redirect } from "next/navigation";
-import { useEffect, useLayoutEffect } from "react";
+import { useEffect } from "react";
+import { isUserLoggedIn } from "@/service/auth.service";
+import { useRouter } from "next/navigation";
 
 export const withAuth = (Component: React.FC) => {
   return function WithAuth(props: any) {
-    const state = useAppSelector((state) => state.loggedUser);
+    const router = useRouter();
+    const isLogged = isUserLoggedIn();
+    console.log("isLogged", isLogged);
 
-
-    useLayoutEffect(() => {
-      if (!state.email) {
-        redirect("/auth/signin");
+    useEffect(() => {
+      if (!isLogged) {
+        router.push("/auth/signin");
       }
-    }, [state]);
-    if (!state.email) return null;
+    }, [isLogged, router]);
+
+    if (!isLogged) {
+      return null;
+    }
+
     return <Component {...props} />;
   };
 };
