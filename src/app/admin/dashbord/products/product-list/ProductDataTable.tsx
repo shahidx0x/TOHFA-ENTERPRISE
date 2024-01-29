@@ -54,11 +54,9 @@ export function ProductDataTable() {
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = React.useState({});
-  const products_list = useProductListQuery({});
-  console.log(products_list);
-
-  const data = products_list?.data?.data?.result || [];
-
+  const { data: productList, isFetching } = useProductListQuery({});
+  console.log(productList);
+  const data = productList?.result;
   const columns: ColumnDef<ProductList>[] = [
     {
       id: "select",
@@ -175,11 +173,11 @@ export function ProductDataTable() {
       rowSelection,
     },
   });
-
+  if (isFetching) return <p>loading....</p>;
   return (
     <div className="w-full">
-      <div>working</div>
-      {/* <div className="flex items-center py-4">
+      {/* <div>working</div> */}
+      <div className="flex items-center py-4">
         <Input
           placeholder="Filter emails..."
           value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
@@ -293,7 +291,7 @@ export function ProductDataTable() {
             Next
           </Button>
         </div>
-      </div> */}
+      </div>
     </div>
   );
 }

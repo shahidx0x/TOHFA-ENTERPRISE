@@ -44,14 +44,14 @@ const ProductAdd = () => {
   const [typeId, setTypeId] = React.useState<number>(0);
   const [productCreate] = useProductCreateMutation();
   const onSubmit = async (values: any) => {
-    console.log(values);
+
     const quantity = Number(values.quantity);
     values.typeId = typeId || 0;
     values.quantity = quantity;
-    console.log(values);
 
     const result = await productCreate({ ...values });
-    if (result && "data" in result && result.data.statusCode === 201) {
+
+    if (result && "data" in result) {
       toast({
         variant: "default",
         title: "Product Created",
@@ -59,11 +59,11 @@ const ProductAdd = () => {
       });
       form.reset();
     } else if (result && "error" in result) {
-      setError(result);
       toast({
         variant: "destructive",
-        title: "Product creation failed!",
-        description: `${error.error.data.message}`,
+        title: "Failed!",
+        //@ts-ignore
+        description: `${result?.error?.message as string}`,
       });
     }
   };

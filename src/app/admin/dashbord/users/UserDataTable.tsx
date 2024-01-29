@@ -53,8 +53,9 @@ export function UserDataTable() {
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = React.useState({});
-  const user_list = useUserListQuery({});
-  const data = user_list?.currentData?.data?.result || [];
+  const { data: userListData, isLoading } = useUserListQuery({});
+
+  const data = userListData?.result;
   const columns: ColumnDef<UserList>[] = [
     {
       id: "select",
@@ -181,7 +182,7 @@ export function UserDataTable() {
       },
     },
   ];
-  const table = useReactTable({
+  const tableConfig = {
     data,
     columns,
     onSortingChange: setSorting,
@@ -198,10 +199,13 @@ export function UserDataTable() {
       columnVisibility,
       rowSelection,
     },
-  });
+  };
 
+  const table = useReactTable(tableConfig);
+  if (isLoading) return <p>loading....</p>;
   return (
     <div className="w-full">
+      <div className="working"></div>
       <div className="flex items-center py-4">
         <Input
           placeholder="Filter emails..."

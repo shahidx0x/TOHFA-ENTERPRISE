@@ -3,8 +3,8 @@ import { baseApi } from "./baseApi";
 export const productsApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
     productList: build.query({
-      query: () => ({
-        url: "/products/product-list",
+      query: (params) => ({
+        url: "/products/product-list?all=true",
         method: "GET",
       }),
       providesTags: ["products"],
